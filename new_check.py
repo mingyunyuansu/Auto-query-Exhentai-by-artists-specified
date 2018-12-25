@@ -28,7 +28,7 @@ url1 = r'https://exhentai.org/?f_doujinshi=1&f_manga=1&f_artistcg=1&f_gamecg=1&f
 url2 = r'&f_apply=Apply+Filter'
 
 
-artists = ['tiramisu', 'kimura neito', 'somejima', 'ichinose', 'pochi-goya', '由浦', 'kazakura', 'jitaku vacation', 'windarteam', 'Nekokaburi', 'yontarou', 'Oohira Sunset',
+artists = ['tiramisu', 'kimura neito', 'somejima', 'ichinose', 'pochi-goya', '由浦', 'kazakura', 'jitaku vacation', 'windarteam', 'kuronomiki', 'Nanahara Fuyuki', 'Oohira Sunset',
            'bifidus', 'bang-you', 'lorica', 'sugarbt', 'muneshiro', 'pyon-kti', 'nosebleed', 'komagata', 'ringoya', 'shinozuka yuuji', 'morikawa', 'ma-kurou', 'kyockcho', 'navier haruka', 'akigami satoru', 'shoot the moon', 'Yakitate Jamaica (Aomushi)', 'Neet', 'Brio', '八', '小島', '月野', '鬼月', '靴下', '瓜皮', '黑锅', '直人', '丧尸', 'doumou', 'kaiki', 'kobayashi youkoh',
            '武田', 'okayusan', 'ken-1', 'tonnosuke', 'shioroku', 'meme50', 'type-g', 'kemokomoya', 'ahegao', 'shiina kazuki', 'karasu', 'cyclone', 'kenja time', 'Nasi-pasuya', 'Muchakai', 'PIANIISHIMO', 'gokuburi', 'banana koubou', 'yukiusagi', 'taira issui', 'arakure', 'E-musu', 'gessyu', 'kurowa', 'Funabori Nariaki']
 
@@ -63,7 +63,7 @@ file.close()
 cnt = 0 #counting for altered object
 for each_name in artists:
     html_text = req_by_name(each_name)
-    soup = BeautifulSoup(html_text)
+    soup = BeautifulSoup(html_text, features='lxml')
     collection = []
     for each in soup.find_all(class_='id2'):
         collection.append(each.a.get_text())
@@ -71,7 +71,7 @@ for each_name in artists:
     if each_name not in old.keys() or old[each_name][0] != new[each_name][0]:
         webbrowser.open(url1+each_name+url2)
         cnt += 1
-        print('----------------------changed from', old[each_name][0], 'to', new[each_name][0])
+        print('----------------------changed', 'to', new[each_name][0])
 
 js = json.dumps(new)
 f = open('old.txt', 'w')
