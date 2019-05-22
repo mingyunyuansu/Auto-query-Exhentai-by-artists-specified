@@ -24,26 +24,26 @@ headers = {
 url = 'https://exhentai.org/'
 
 #template of url
-url1 = r'https://exhentai.org/?f_doujinshi=1&f_manga=1&f_artistcg=1&f_gamecg=1&f_western=1&f_non-h=1&f_imageset=1&f_cosplay=1&f_asianporn=1&f_misc=1&f_search='
-url2 = r'&f_apply=Apply+Filter'
+url1 = r'https://exhentai.org/?f_cats=1017&f_search='
+#url2 = r'&f_apply=Apply+Filter'
 
 
 artists = ['tiramisu', 'kimura neito', 'somejima', 'ichinose', 'pochi-goya', '由浦', 'kazakura', 'jitaku vacation', 'windarteam', 'kuronomiki', 'Nanahara Fuyuki', 'Oohira Sunset',
            'bifidus', 'bang-you', 'lorica', 'sugarbt', 'muneshiro', 'pyon-kti', 'nosebleed', 'komagata', 'ringoya', 'shinozuka yuuji', 'morikawa', 'ma-kurou', 'kyockcho', 'navier haruka', 'akigami satoru', 'shoot the moon', 'Yakitate Jamaica (Aomushi)', 'Neet', 'Brio', '八', '小島', '月野', '鬼月', '靴下', '瓜皮', '黑锅', '直人', '丧尸', 'doumou', 'kaiki', 'kobayashi youkoh',
-           '武田', 'okayusan', 'ken-1', 'tonnosuke', 'shioroku', 'meme50', 'type-g', 'kemokomoya', 'ahegao', 'shiina kazuki', 'karasu', 'cyclone', 'kenja time', 'Nasi-pasuya', 'Muchakai', 'PIANIISHIMO', 'gokuburi', 'banana koubou', 'yukiusagi', 'taira issui', 'arakure', 'E-musu', 'gessyu', 'kurowa', 'Funabori Nariaki']
+           '武田', 'okayusan', 'ken-1', 'tonnosuke', 'shioroku', 'meme50', 'type-g', 'kemokomoya', 'ahegao', 'shiina kazuki', 'karasu', 'cyclone', 'kenja time', 'Nasi-pasuya', 'Muchakai', 'PIANIISHIMO', 'gokuburi', 'banana koubou', 'yukiusagi', 'taira issui', 'arakure', 'E-musu', 'gessyu', 'kurowa', 'Funabori Nariaki', 'Orutoro']
 
 def req_by_name(name):
     #get method, loaded by get()
     payload = {'f_doujinshi': '1',
            'f_manga': '1',
-           'f_artistcg': '1',
-           'f_gamecg': '1',
-           'f_western': '1',
-           'f_non-h': '1',
-           'f_imageset': '1',
-           'f_cosplay': '1',
-           'f_asianporn': '1',
-           'f_misc': '1',
+           'f_artistcg': '0',
+           'f_gamecg': '0',
+           'f_western': '0',
+           'f_non-h': '0',
+           'f_imageset': '0',
+           'f_cosplay': '0',
+           'f_asianporn': '0',
+           'f_misc': '0',
            'f_search': None,
            'f_apply': 'Apply+Filter'}
     payload['f_search'] = name
@@ -65,11 +65,12 @@ for each_name in artists:
     html_text = req_by_name(each_name)
     soup = BeautifulSoup(html_text, features='lxml')
     collection = []
-    for each in soup.find_all(class_='id2'):
-        collection.append(each.a.get_text())
+    for each in soup.find_all(class_='gl4t glname glink'):
+        #print (each.get_text())
+        collection.append(each.get_text())
     new[each_name] = collection
     if each_name not in old.keys() or old[each_name][0] != new[each_name][0]:
-        webbrowser.open(url1+each_name+url2)
+        webbrowser.open(url1+each_name)
         cnt += 1
         print('----------------------changed', 'to', new[each_name][0])
 
