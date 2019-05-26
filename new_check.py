@@ -69,7 +69,7 @@ def main_process():
             collection.append(each.get_text())
         new[each_name] = collection
         if each_name not in old.keys() or old[each_name][0] != new[each_name][0]:
-            webbrowser.open(url1+each_name)
+            webbrowser.open(url1+each_name, new=2)
             cnt += 1
             print('----------------------changed', 'to', new[each_name][0])
 
@@ -78,7 +78,7 @@ def main_process():
     f.write(js)
     f.close()
     #routine for gmgard
-    webbrowser.open_new('https://gmgard.com')
+    webbrowser.open_new('https://gmgard.com', new=2)
     print('Finished', cnt, 'changed.')
 
 def main():
