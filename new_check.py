@@ -71,24 +71,25 @@ def main_process():
         if each_name not in old.keys() or old[each_name][0] != new[each_name][0]:
             webbrowser.open(url1+each_name, new=2)
             cnt += 1
-            print('----------------------changed', 'to', new[each_name][0])
+            print('\t---changed to', new[each_name][0])
 
     js = json.dumps(new)
     f = open('old.txt', 'w')
     f.write(js)
     f.close()
     #routine for gmgard
-    webbrowser.open_new('https://gmgard.com', new=2)
-    print('Finished', cnt, 'changed.')
+    webbrowser.open('https://gmgard.com', new=2)
+    print('\n\n\n***Finished***\n', cnt, 'changed.')
 
 def main():
     start_time = time.clock() #Timing
+    retry_times = 0
     while True:
         try:
             main_process()
             break
-        except SSLError as err:
-            print(err)
+        except requests.SSLError as err:
+            print('\n\n\n***', err, '***\n\n\n')
             print(time.clock()-start_time, 'restart')
         except:
             print('Unknow error, quit', time.clock()-start_time)
