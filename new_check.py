@@ -91,11 +91,13 @@ def main():
         except requests.SSLError as err:
             print('\n\n\n***', err, '***\n\n\n')
             print(time.clock()-start_time, 'restart')
-        except:
-            print('Unknow error, quit', time.clock()-start_time)
+            retry_times += 1
+        except BaseException as unk_err:
+            print('Unknow error, quit', unk_err, time.clock()-start_time)
             break
         finally:
             print(time.clock()-start_time)
+            print('Retried', retry_times, 'times')
 
 if __name__=='__main__':
     main()
