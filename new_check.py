@@ -72,7 +72,7 @@ def main_process():
             collection.append(each.get_text())
         new[each_name] = collection
         # Since the e-hentai forbides some content available on the ex-hentai, we now have to verify is this item availble on the e-hentai
-        if not new:
+        if not new[each_name]:
             continue
         if each_name not in old.keys() or old[each_name][0] != new[each_name][0]:
             webbrowser.open(url1+each_name, new=2)
