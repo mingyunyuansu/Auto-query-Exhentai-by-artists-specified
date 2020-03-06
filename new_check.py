@@ -4,14 +4,12 @@ import time
 import json
 from bs4 import BeautifulSoup
 
-
 headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36'
 }
 
-
 #Prepare cookies, used in requests.get() below
-cookies_f = open('ecookies.txt', 'r')
+cookies_f = open('excookie.txt', 'r')
 cookies_copy = eval(cookies_f.read())
 cookies_f.close()
 
@@ -21,16 +19,16 @@ for each_item in cookies_copy:
     cookies[each_item['name']] = each_item['value']
 
 
-url = 'https://e-hentai.org/'
+url = 'https://exhentai.org/'
 
 #template of url
-url1 = r'https://e-hentai.org/?f_cats=1017&f_search='
+url1 = r'https://exhentai.org/?f_cats=1017&f_search='
 #url2 = r'&f_apply=Apply+Filter'
 
 
-artists = ['tiramisu', 'kimura neito', 'somejima', 'ichinose', 'pochi-goya', '由浦', 'kazakura', 'jitaku vacation', 'windarteam', 'kuronomiki', 'Nanahara Fuyuki', 'Oohira Sunset',
+artists = ['Muchakai', 'tiramisu', 'kimura neito', 'somejima', 'ichinose', 'pochi-goya', '由浦', 'kazakura', 'jitaku vacation', 'windarteam', 'kuronomiki', 'Nanahara Fuyuki', 'Oohira Sunset',
            'bifidus', 'bang-you', 'lorica', 'sugarbt', 'muneshiro', 'pyon-kti', 'nosebleed', 'komagata', 'ringoya', 'shinozuka yuuji', 'morikawa', 'ma-kurou', 'kyockcho', 'navier haruka', 'akigami satoru', 'shoot the moon', 'Yakitate Jamaica (Aomushi)', 'Neet', 'Brio', '八', '小島', '月野', '鬼月', '靴下', '瓜皮', '黑锅', '直人', '丧尸', 'doumou', 'kaiki', 'kobayashi youkoh',
-           '武田', 'okayusan', 'ken-1', 'tonnosuke', 'shioroku', 'meme50', 'type-g', 'kemokomoya', 'ahegao', 'shiina kazuki', 'karasu', 'cyclone', 'kenja time', 'Nasi-pasuya', 'Muchakai', 'PIANIISHIMO', 'gokuburi', 'banana koubou', 'yukiusagi', 'taira issui', 'arakure', 'E-musu', 'gessyu', 'kurowa', 'Funabori Nariaki', 'Orutoro', 'chin']
+           '武田', 'okayusan', 'ken-1', 'tonnosuke', 'shioroku', 'meme50', 'type-g', 'kemokomoya', 'ahegao', 'shiina kazuki', 'karasu', 'cyclone', 'kenja time', 'Nasi-pasuya',  'PIANIISHIMO', 'gokuburi', 'banana koubou', 'yukiusagi', 'taira issui', 'arakure', 'E-musu', 'gessyu', 'kurowa', 'Funabori Nariaki', 'Orutoro', 'chinchintei', 'Onsoku Ubaguruma', 'Uono Shinome', 'Bonske', 'Kaenuco', 'matou', 'Uba Yoshiyuki', 'Derauea', 'AERODOG', 'Turiganesou', 'kakao', 'Azukiko', 'Osomatsu', 'NoriPachi']
     
 
 def req_by_name(name):
@@ -73,8 +71,9 @@ def main_process():
         new[each_name] = collection
         # Since the e-hentai forbides some content available on the ex-hentai, we now have to verify is this item availble on the e-hentai
         if not new[each_name]:
+            print('-------Nothing found, skiped')
             continue
-        if each_name not in old.keys() or old[each_name][0] != new[each_name][0]:
+        if each_name not in old.keys() or not old[each_name] or old[each_name][0] != new[each_name][0]:
             webbrowser.open(url1+each_name, new=2)
             cnt += 1
             print('\t---changed to', new[each_name][0])
@@ -84,7 +83,7 @@ def main_process():
     f.write(js)
     f.close()
     #routine for gmgard
-    webbrowser.open('https://gmgard.com', new=2)
+    #webbrowser.open('https://gmgard.com', new=2)
     print('\n\n\n***Finished***\n', cnt, 'changed.')
 
 def main():
