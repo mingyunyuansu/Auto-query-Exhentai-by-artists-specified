@@ -26,9 +26,7 @@ url1 = r'https://exhentai.org/?f_cats=1017&f_search='
 #url2 = r'&f_apply=Apply+Filter'
 
 
-artists = ['Muchakai', 'tiramisu', 'kimura neito', 'somejima', 'ichinose', 'pochi-goya', '由浦', 'kazakura', 'jitaku vacation', 'windarteam', 'kuronomiki', 'Nanahara Fuyuki', 'Oohira Sunset',
-           'bifidus', 'bang-you', 'lorica', 'sugarbt', 'muneshiro', 'pyon-kti', 'nosebleed', 'komagata', 'ringoya', 'shinozuka yuuji', 'morikawa', 'ma-kurou', 'kyockcho', 'navier haruka', 'akigami satoru', 'shoot the moon', 'Yakitate Jamaica (Aomushi)', 'Neet', 'Brio', '八', '小島', '月野', '鬼月', '靴下', '瓜皮', '黑锅', '直人', '丧尸', 'doumou', 'kaiki', 'kobayashi youkoh',
-           '武田', 'okayusan', 'ken-1', 'tonnosuke', 'shioroku', 'meme50', 'type-g', 'kemokomoya', 'ahegao', 'shiina kazuki', 'karasu', 'cyclone', 'kenja time', 'Nasi-pasuya',  'PIANIISHIMO', 'gokuburi', 'banana koubou', 'yukiusagi', 'taira issui', 'arakure', 'E-musu', 'gessyu', 'kurowa', 'Funabori Nariaki', 'Orutoro', 'chinchintei', 'Onsoku Ubaguruma', 'Uono Shinome', 'Bonske', 'Kaenuco', 'matou', 'Uba Yoshiyuki', 'Derauea', 'AERODOG', 'Turiganesou', 'kakao', 'Azukiko', 'Osomatsu', 'NoriPachi']
+artists = []
     
 
 def req_by_name(name):
